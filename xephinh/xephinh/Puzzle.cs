@@ -235,6 +235,10 @@ namespace xephinh
                 switch_img(box1, box2);
                 box1 = box2 = null;
             }
+            if (check())
+            {
+                MessageBox.Show("Đã hoàn thành");
+            }
             /*else
             {
                 box1 = box2;
@@ -253,10 +257,10 @@ namespace xephinh
             _box2.ImageID = _box1.ImageID;
             _box1.Image = _box_t.Image;
             _box1.ImageID = temp;
-            if(check())
+            /*if(check())
             {
                 MessageBox.Show("Đã hoàn thành");
-            }
+            }*/
         }
         private bool check()
         {
@@ -266,49 +270,15 @@ namespace xephinh
                     return false;
             return true;
         }
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             make_clue(curLv);
-            int col = curLv;
-            //row1(curLv);
-            firstclue(col);
-
-            for (int i = 2; i < col; i++)
+            row1(curLv);
+            sort_auto(curLv);
+            if (check())
             {
-                for (int j = i; j < col * col; j++)
-                {
-                    int x = i / col;
-                    int y = j % col;
-                    if (i != col - 1)
-                    {
-                        if (clue[suufe[x, i - 1], ((PtB)boxs[j]).ImageID] == 1)
-                        {
-                            if (clue[((PtB)boxs[j]).ImageID, ((PtB)boxs[j]).ImageID] == 3)
-                            {
-                                if (j == i)
-                                    break;
-                                switch_img((PtB)boxs[i], (PtB)boxs[j]);
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (clue[((PtB)boxs[j]).ImageID, ((PtB)boxs[j]).ImageID] == 2)
-                        {
-                            if (clue[suufe[x, i - 1], ((PtB)boxs[j]).ImageID] == 1)
-                            {
-                                if (j == i)
-                                    break;
-                                switch_img((PtB)boxs[i], (PtB)boxs[j]);
-                                break;
-                            }
-                        }
-
-                    }
-                }
-                Thread.Sleep(500);
+                MessageBox.Show("Đã hoàn thành");
             }
         }
 
@@ -499,9 +469,31 @@ namespace xephinh
 
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void sort_auto(int lv)
         {
-
+            int x, y;
+            for(int i=lv;i<lv*lv;i++)
+            {
+                for(int j=i;j<lv*lv;j++)
+                {
+                    x = i / lv;
+                    y = i % lv;
+                    if (y == 0)
+                    {
+                        if(clue[((PtB)boxs[j]).ImageID, suufe[x-1,y]] ==1)
+                        {
+                            switch_img((PtB)boxs[i], ((PtB)boxs[j]));
+                            break;
+                        }
+                    }
+                    else if(clue[((PtB)boxs[j]).ImageID,suufe[x,y-1]] == 1 &&
+                        clue[((PtB)boxs[j]).ImageID, suufe[x-1, y]] ==1)
+                    {
+                        switch_img((PtB)boxs[i], ((PtB)boxs[j]));
+                        break;
+                    }
+                }
+            }
         }
     }
 }

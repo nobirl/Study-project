@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.choose_img = new System.Windows.Forms.Button();
             this.puzzle = new System.Windows.Forms.GroupBox();
             this.bt_lv1 = new System.Windows.Forms.Button();
@@ -43,7 +42,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.gb_lv.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -187,10 +185,6 @@
             this.label2.TabIndex = 17;
             this.label2.Text = "label2";
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // puzzle_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -231,7 +225,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Timer timer1;
     }
 }
 
