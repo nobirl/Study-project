@@ -1,0 +1,10 @@
+G:\Hoc\Visual studio project\xephinh\xephinh\bin\Debug\xephinh.exe.config
+G:\Hoc\Visual studio project\xephinh\xephinh\bin\Debug\xephinh.exe
+G:\Hoc\Visual studio project\xephinh\xephinh\bin\Debug\xephinh.pdb
+G:\Hoc\Visual studio project\xephinh\xephinh\obj\Debug\xephinh.csprojAssemblyReference.cache
+G:\Hoc\Visual studio project\xephinh\xephinh\obj\Debug\xephinh.Properties.Resources.resources
+G:\Hoc\Visual studio project\xephinh\xephinh\obj\Debug\xephinh.csproj.GenerateResource.cache
+G:\Hoc\Visual studio project\xephinh\xephinh\obj\Debug\xephinh.csproj.CoreCompileInputs.cache
+G:\Hoc\Visual studio project\xephinh\xephinh\obj\Debug\xephinh.exe
+G:\Hoc\Visual studio project\xephinh\xephinh\obj\Debug\xephinh.pdb
+G:\Hoc\Visual studio project\xephinh\xephinh\obj\Debug\xephinh.puzzle_form.resources
