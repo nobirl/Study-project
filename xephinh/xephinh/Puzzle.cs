@@ -18,12 +18,17 @@ namespace xephinh
         public puzzle_form()
         {
             InitializeComponent();
-
         }
 
         Image image;
         PictureBox box = null;
         OpenFileDialog op = null;
+        PictureBox[] boxs = null;
+        Image[] images = null;
+        int[] lv = new int[5] { 2, 3, 4, 6, 10 };
+        int curLv = 0;
+        int[,] clue;
+        int[,] suufe;
         private void choose_img_Click(object sender, EventArgs e)
         {
             if (op == null)
@@ -68,12 +73,6 @@ namespace xephinh
             objGra.Flush();
         }
 
-        PictureBox[] boxs = null;
-        Image[] images = null;
-        int[] lv = new int[5] { 2, 3, 4, 6, 10 };
-        int curLv = 0;
-        int[,] clue;
-        int[,] suufe;
         private void make_lv(int x)
         {
             if (box != null)
@@ -122,10 +121,9 @@ namespace xephinh
             suffle(ref id);
             for (int i = 0; i < x * x; i++)
             {
-                //boxs[i].Image = images[id[i]];
+                boxs[i].Image = images[id[i]];
                 images[i].Tag = id[i];
-                //((PtB)boxs[i]).ImageID = id[i];
-                
+                ((PtB)boxs[i]).ImageID = id[i];
             }
             int count = 0;
             for (int i = 0; i < x; i++)
@@ -140,9 +138,9 @@ namespace xephinh
             suffle(ref id);
             for (int i = 0; i < x * x; i++)
             {
-                for(int j=0;j<x*x;j++)
+                for (int j = 0; j < x * x; j++)
                 {
-                    if(Int32.Parse(images[j].Tag.ToString())==id[i])
+                    if (Int32.Parse(images[j].Tag.ToString()) == id[i])
                     {
                         boxs[i].Image = images[j];
                         ((PtB)boxs[i]).ImageID = id[i];
@@ -151,26 +149,13 @@ namespace xephinh
                 }
             }
 
-            
-            /*for(int i =0;i<x;i++)
-            {
-                for(int j=0;j<x;j++)
-                {
-                    suufe[i, j] = Int32.Parse(images[count].Tag.ToString());
-                    count++;
-                }
-            }*/
-
-            
-            for(int i=0;i<x*x;i++)
+            for (int i=0;i<x*x;i++)
             {
                 for(int j=0;j<x*x;j++)
                 {
                     clue[i, j] = 0;
                 }
-                
             }
-            
         }
 
         private void bt_lv1_Click(object sender, EventArgs e)
@@ -235,10 +220,10 @@ namespace xephinh
                 switch_img(box1, box2);
                 box1 = box2 = null;
             }
-            if (check())
+            /*if (check())
             {
                 MessageBox.Show("Đã hoàn thành");
-            }
+            }*/
             /*else
             {
                 box1 = box2;
@@ -257,10 +242,10 @@ namespace xephinh
             _box2.ImageID = _box1.ImageID;
             _box1.Image = _box_t.Image;
             _box1.ImageID = temp;
-            /*if(check())
+            if (check())
             {
                 MessageBox.Show("Đã hoàn thành");
-            }*/
+            }
         }
         private bool check()
         {
@@ -276,10 +261,6 @@ namespace xephinh
             make_clue(curLv);
             row1(curLv);
             sort_auto(curLv);
-            if (check())
-            {
-                MessageBox.Show("Đã hoàn thành");
-            }
         }
 
         private void row1(int col)
@@ -482,6 +463,8 @@ namespace xephinh
                     {
                         if(clue[((PtB)boxs[j]).ImageID, suufe[x-1,y]] ==1)
                         {
+                            if (i == j)
+                                break;
                             switch_img((PtB)boxs[i], ((PtB)boxs[j]));
                             break;
                         }
@@ -489,6 +472,8 @@ namespace xephinh
                     else if(clue[((PtB)boxs[j]).ImageID,suufe[x,y-1]] == 1 &&
                         clue[((PtB)boxs[j]).ImageID, suufe[x-1, y]] ==1)
                     {
+                        if (i == j)
+                            break;
                         switch_img((PtB)boxs[i], ((PtB)boxs[j]));
                         break;
                     }
